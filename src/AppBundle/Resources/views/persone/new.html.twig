@@ -1,0 +1,70 @@
+{# lezione n 5 del 2017/3/7: stravolto editAction
+   cambiato il controller newAction in personeControlle.php
+   L'extend 'base.html.twig' non è + necessario
+   E non sono più previste le <Variable "edit_form"> e <Variable "delete_form"> ma solo la <Variable "form">
+
+    {% extends 'base.html.twig' %}
+
+    {% block body %}
+        <h1>Anagrafica Modificabile</h1>
+        <ul>
+
+                {{ form_start(edit_form) }}
+                    {{ form_widget(edit_form) }}
+                        <li><input type="submit" value="Conferma" /></li>
+                {{ form_end(edit_form) }}
+
+
+            <li>
+                <a href="{{ path('persone_index') }}">Torna alla lista</a>
+            </li>
+            <li>
+                {{ form_start(delete_form) }}
+                    <input type="submit" value="Cancella">
+                {{ form_end(delete_form) }}
+            </li>
+        </ul>
+    {% endblock %}
+#}
+{#
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+    {{ form_end(form) }}
+#}
+{# lezione n 6 del 2017/3/14: stravolto editAction #}
+{{ form_start(form) }}
+<div class="row">
+    <div class="col-xs-4 col-md-4">
+        {{ form_row(form.nome) }}
+    </div>
+    <div class="col-xs-4 col-md-4">
+        {{ form_row(form.cognome) }}
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-4 col-md-4">
+        {{ form_row(form.codiceFiscale) }}
+    </div>
+    <div class="col-xs-4 col-md-4">
+        {{ form_row(form.email) }}
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-4 col-md-4">
+        {{ form_row(form.dataNascita) }}
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-4 col-md-4">
+        {% form_theme form 'TetranzSelect2EntityBundle:Form:fields.html.twig' %}
+        {{ form_row(form.idGruppo) }}
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-4 col-md-4">
+        {% form_theme form 'TetranzSelect2EntityBundle:Form:fields.html.twig' %}
+        {{ form_row(form.idSquadra) }}
+    </div>
+</div>
+{{ form_row(form._token) }}
+<script src="{{ asset('bundles/tetranzselect2entity/js/select2entity.js') }}"></script>

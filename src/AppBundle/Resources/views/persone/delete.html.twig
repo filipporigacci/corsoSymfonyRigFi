@@ -1,0 +1,57 @@
+{#
+{% extends 'base.html.twig' %}
+{% block body %}
+
+    <h1>Persone edit</h1>
+    {{ form_start(edit_form) }}
+    {{ form_widget(edit_form) }}
+    <input type="submit" value="Edit" />
+    {{ form_end(edit_form) }}
+#}
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="alert alert-danger">
+                <strong>Attenzione</strong> <p>Si vuole procedere alla cancellazione della anagrafica di {{ persone.nome }} {{ persone.cognome }}?</p>
+            </div>
+            <hidden id="confirmDeleteId" data="{{ persone.id }}"></hidden>
+        </div>
+    </div>
+{% include '@App/persone/show.html.twig' %}
+{#    <table>
+        <tbody>
+        <tr>
+            <th>Nome: </th>
+            <td>{{ persone.nome }}</td>
+        </tr>
+        <tr>
+            <th>Cognome: </th>
+            <td>{{ persone.cognome }}</td>
+        </tr>
+        <tr>
+            <th>Datanascita: </th>
+            <td>{% if persone.dataNascita %}{{ persone.dataNascita|date('Y-m-d') }}{% endif %}</td>
+        </tr>
+        <tr>
+            <th>Codicefiscale: </th>
+            <td>{{ persone.codiceFiscale }}</td>
+        </tr>
+        <tr>
+            <th>eMail: </th>
+            <td>{{ persone.email }}</td>
+        </tr>
+        <tr>
+            <th>Sede: </th>
+            <td>#}{#{{ persone.idGruppo }}#}{#</td>
+        </tr>
+        </tbody>
+    </table>#}
+
+
+{#    <ul>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete" hidden>
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}#}

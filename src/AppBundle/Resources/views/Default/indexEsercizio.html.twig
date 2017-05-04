@@ -1,0 +1,44 @@
+{% extends '::base.html.twig' %}
+{% block title %}Hello{% endblock %}
+{% block stylesheets %}
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+    {% if people %}
+        {% if people.cognome == surname %}
+            <h1>Hello {{surname}}, welcome back!</h1><br><br>
+            <table>
+                <tr>
+                    <th>Id</th>
+                    <th>Firstname</th>
+                    <th>Surname</th>
+                    <th>Date of birth</th>
+                    <th>C.F.</th>
+                </tr>
+                <tr>
+                    <td>{{ people.id }}</td>
+                    <td>{{ people.nome }}</td>
+                    <td>{{ people.cognome }}</td>
+                    <td>{{ people.dataNascita|date('Y-m-d') }}</td>
+                    <td>{{ people.codiceFiscale }}</td>
+                </tr>
+            </table>
+        {% endif %}
+    {% else %}
+        <h1>Hello Mr/Msr/Miss {{surname}}, I don't know you. Anyway I wish you happy new year!</h1>
+    {% endif %}
+{% endblock %}

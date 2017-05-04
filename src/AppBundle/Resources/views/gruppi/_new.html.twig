@@ -1,0 +1,24 @@
+{{ form_start(form) }}
+<div class="row">
+    <div class="col-xs-4 col-md-4">
+        {{ form_row(form.descrizione) }}
+    </div>
+    <div class="col-xs-4 col-md-4">
+        {#{{ form_row(form.elencoPersone) }}#}
+        {% for p in form.elencoPersone %}
+
+            {{ form_widget(p.nome) }}
+
+        {% endfor %}
+    </div>
+    <div class="col-xs-4 col-md-4">
+        {#{{ form_row(form.elencoPersone) }}#}
+        {% for p in form.elencoPersone %}
+
+          {{ form_widget(p.cognome) }}
+
+        {% endfor %}
+    </div>
+</div>
+{{ form_row(form._token) }}
+<script src="{{ asset('bundles/tetranzselect2entity/js/select2entity.js') }}"></script>

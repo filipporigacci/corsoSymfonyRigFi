@@ -1,0 +1,80 @@
+<h3>Add a New Group</h3>
+{{ form_start(form) }}
+    {{ form_row(form.descrizione) }}
+{#<h4>List</h4>#}
+<ul class="tags">
+    {% for persona in form.elencoPersone %}
+        <li>{{ form_widget(persona.cognome ) }} </li>
+
+    {% endfor %}
+</ul>
+<h4>Details</h4>
+{{ form_end(form) }}
+
+
+
+{#{{ form_start(form) }}#}
+{#<div class="row">#}
+    {#<div class="col-md-12">#}
+        {#<div class="col-md-1">#}
+            {#{% form_theme form 'TetranzSelect2EntityBundle:Form:fields.html.twig' %}#}
+            {#{{ form_row(form.descrizione) }}#}
+        {#</div>#}
+        {#<div class="col-md-10">#}
+            {#{{ form_row(form.elencoPersone) }}#}
+            {#<table id="myTable" class="table table-bordered table-striped"#}
+                   {#data-prototype="{%  include ':gruppi/Prototype:elencoPersone.html.twig' %}"#}
+                {#>#}
+                {#<thead>#}
+                {#<tr>#}
+
+                    {#<th>Id</th>#}
+
+                    {#<th>Nome</th>#}
+                    {#<th>Cognome</th>#}
+                    {#<th>Data Nascita</th>#}
+                    {#<th>CF</th>#}
+
+                    {#<th>Gruppo</th>#}
+
+                    {#<th>Squadra</th>#}
+                    {#<th>email</th>#}
+                {#</tr>#}
+                {#</thead>#}
+                {#<tbody>#}
+                {#{% for p in form.elencoPersone %}#}
+                    {#<tr>#}
+                        {#<td>{{ form_widget(p.id) }}</td>#}
+
+                        {#<td>{{ form_widget(p.nome) }}</td>#}
+                        {#<td>{{ form_widget(p.cognome) }}</td>#}
+                        {#<td>{{ form_widget(p.dataNascita) }}</td>#}
+                        {#<td>{{ form_widget(p.codiceFiscale ) }}#}
+                        {#</td>#}
+
+                        {#<td>#}
+                            {#{{ form_widget(p.idGruppo, {'attr':{'class': 'hidden'}}) }}#}
+                        {#</td>#}
+
+                        {#<td>#}
+                            {#{{ form_widget(p.idSquadra,{'attr':{'class': 'hidden'}}) }}#}
+                        {#</td>#}
+                        {#<td>{{ form_widget(p.email) }}</td>#}
+                    {#</tr>#}
+                {#{% endfor %}#}
+                {#</tbody>#}
+            {#</table>#}
+        {#</div>#}
+        {#<div class="col-md-1">#}
+            {#<button class="btn btn-default add "#}
+                    {#onclick="addPrototype('#myTable');"#}
+                    {#type="button" aria-label="Nuova scheda">#}
+                {#<span class="glyphicon glyphicon-plus"></span>#}
+            {#</button>#}
+        {#</div>#}
+    {#</div>#}
+    {#{{ form_row(form._token) }}#}
+{#</div>#}
+{#<script src="{{ asset('bundles/tetranzselect2entity/js/select2entity.js') }}"></script>#}
+
+

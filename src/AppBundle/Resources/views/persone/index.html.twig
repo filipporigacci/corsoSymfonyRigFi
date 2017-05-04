@@ -1,0 +1,58 @@
+{#  Dalla lezione del 7/3/2017 ho abbandonato il base.html.twig che segue in favore del @App/base.html.twig che contiene bootstrap js e css#}
+{# {% extends 'base.html.twig' %} #}
+{#  Dalla lezione del 14/3/2017 ha abbandonato il @App/base.html.twig per evitare il loop generato dalle funzoni in functions.js #}
+{# {% extends '@App/base.html.twig' %} #}
+{% block body %}
+<div class="panel-body">
+{#    <h1> Lista persone</h1>
+    <h2> Lezione del 28/2/2017 e aspetto  migliorato (con modal) il 7/3/2017</h2>#}
+    {{ stampaTabella1(persones)}}    {# When called by Twig, the PHP callable receives the left side of the filter (before the pipe |) as the first argument and the extra arguments passed to the filter (within parentheses ()) as extra arguments. #}
+</div>
+    {#  Dalla lezione del 28/2/2017 abbiamo abbandonato il twig che segue in favore del twig extension realizzato con stampaTabella1
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Cognome</th>
+                <th>Data Nascita</th>
+                <th>Codice Fiscale</th>
+                <th>Azione</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for persone in persones %}
+            <tr>
+                <td><a href="{{ path('persone_show', { 'id': persone.id }) }}">{{ persone.id }}</a></td>
+                <td>{{ persone.nome }}</td>
+                <td>{{ persone.cognome }}</td>
+                <td>{% if persone.dataNascita %}{{ persone.dataNascita|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ persone.codiceFiscale }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('persone_show', { 'id': persone.id }) }}">Visualizza</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('persone_edit', { 'id': persone.id }) }}">Modifica</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    #}
+
+
+
+    <ul>
+        <li>
+            {# sostituito durante la lezione delle modal form (7/3/2017)
+               <a href="{{ path('persone_new') }}">Crea una nuova persona</a> #}
+            <a href="#" onclick="loadFormIntoModal(Routing.generate('persone_new'));">Nuovo</a>
+            {# Se volessi chiamare un altro tipo di modale
+            <a href="#" onclick="loadConfirmModal(Routing.generate('persone_new'));">Nuovo</a> #}
+        </li>
+    </ul>
+{% endblock %}

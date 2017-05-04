@@ -1,0 +1,57 @@
+{#{% extends 'base.html.twig' %}
+{% block body %}#}
+    {#<h3>Anagrafica</h3>#}
+    {#{{ dump() }}#}
+    <table>
+        <tbody>
+{#            <tr>
+                <th>Id: </th>
+                <td>{{ persone.id }}</td>
+            </tr>#}
+            <tr>
+                <th>Nome: </th>
+                <td>{{ persone.nome }}</td>
+            </tr>
+            <tr>
+                <th>Cognome: </th>
+                <td>{{ persone.cognome }}</td>
+            </tr>
+            <tr>
+                <th>Datanascita: </th>
+                <td>{% if persone.dataNascita %}{{ persone.dataNascita|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Codicefiscale: </th>
+                <td>{{ persone.codiceFiscale }}</td>
+            </tr>
+            <tr>
+                <th>eMail: </th>
+                <td>{{ persone.email }}</td>
+            </tr>
+            <tr>
+                <th>Sede: </th>
+                {#<td>{{ persone.idGruppo.descrizione }}</td>#}
+                <td>{% if persone.idGruppo %}{{ persone.idGruppo.descrizione}}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Squadra: </th>
+                <td>{% if persone.idSquadra %}{{ persone.idSquadra.nome}}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+{#    <ul>
+        <li>
+            <a href="{{ path('persone_index') }}">Torna alla lista</a>
+        </li>
+        <li>
+            <a href="{{ path('persone_edit', { 'id': persone.id }) }}">Modifica</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Cancella">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>#}
+{#
+{% endblock %}#}

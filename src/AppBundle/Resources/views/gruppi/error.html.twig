@@ -1,0 +1,47 @@
+{#<h3>Group error</h3>#}
+{#{{ form_start(form) }}#}
+    {#{{ form_row(form.descrizione) }}#}
+{#<h4>Details</h4>#}
+    {#<table id="myTable" class="table table-bordered table-striped">#}
+        {#<thead>#}
+        {#<tr>#}
+            {#<th>Nome</th>#}
+            {#<th>Cognome</th>#}
+            {#<th>Data Nascita</th>#}
+            {#<th>CF</th>#}
+            {#<th>email</th>#}
+            {#<th>Gruppo</th>#}
+            {#<th>Squadra</th>#}
+        {#</tr>#}
+        {#</thead>#}
+        {#<tbody>#}
+        {#{% for p in form.elencoPersone %}#}
+            {#<tr>#}
+                {#<td>{{ form_widget(p.nome) }}</td>#}
+                {#<td>{{ form_widget(p.cognome) }}</td>#}
+                {#<td>{{ form_widget(p.dataNascita) }}</td>#}
+                {#<td>#}
+                    {#{{ form_widget(p.codiceFiscale ) }}#}
+                    {#</td>#}
+                {#<td>{{ form_widget(p.email) }}</td>#}
+                {#<td>#}
+                    {#{{ form_widget(p.idGruppo) }}#}
+                {#</td>#}
+                {#<td>#}
+                    {#{{ form_widget(p.idSquadra) }}#}
+                {#</td>#}
+            {#</tr>#}
+        {#{% endfor %}#}
+        {#</tbody>#}
+    {#</table>#}
+{#{{ form_errors(form) }}#}
+{#{{ form_end(form) }}#}
+{#{{ form_row(form._token) }}#}
+
+
+
+
+{{ form_errors(form) }}
+{#{{ form_label(form.name) }}#}
+{#{{ form_widget(form.name) }}#}
+{#{{ form_errors(form.name) }}#}

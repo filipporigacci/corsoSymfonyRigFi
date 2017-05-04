@@ -1,0 +1,78 @@
+<div class="row">
+    <div class="col-sm-12">
+        <div class="row">
+            <div class="col-sm-12">
+                <table width="80%" align="center"><tr><td>
+                    <table width="80%" class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Cognome</th>
+                            <th>Nascita</th>
+                            <th>CF</th>
+                            <th>eMail</th>
+                            <th>Sede</th>
+                            <th>Squadra</th>
+                            <th>Azione</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {# {{ dump() }} #}
+                        {% for persona in persone %}
+                            <tr>
+                                <td>{{ persona.nome }}</td>
+                                <td>{{ persona.cognome }}</td>
+                                <td>{% if persona.dataNascita %}{{ persona.dataNascita|date('Y-m-d') }}{% endif %} </td>
+                                <td>{{ persona.codiceFiscale }}</td>
+                                <td>{{ persona.email }}</td>
+                                {# Esercizio N 1 di  lezione n. 8 del 28/3/2017#}
+                                {#<td>{% if persona.idGruppo !=null %}
+                                        {{ persona.idGruppo.descrizione }}
+                                    {% endif %}
+                                    <br># {{  persona.idGruppo.elencoPersone | length}}<br>
+                                    {% for anagrafica in  persona.idGruppo.elencoPersone %}
+                                        {{ anagrafica.cognome}} {{ anagrafica.nome }} <br>
+                                    {% endfor %}
+                                </td>#}
+                                {# Esercizio N 2 di lezione n. 8 del 28/3/2017#}
+                                <td>{% if persona.idGruppo !=null %}
+                                        <a href="#" onclick="loadFormIntoModal(Routing.generate('gruppi_edit',{id:{{ persona.idGruppo.id }}}));">
+                                            {{ persona.idGruppo.descrizione }}
+                                        </a>
+                                        <br># {{  persona.idGruppo.elencoPersone | length}}
+                                    {% endif %}
+                                </td>
+                                <td>{% if persona.idSquadra !=null %}
+                                        {{ persona.idSquadra.nome }}
+                                        <br># {{  persona.idSquadra.elencoPersone | length}}
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>
+                                            {# sostituito durante la lezione n 5 delle modal form (7/3/2017)
+                                                <a href="{{ path('persone_show', { 'id': persona.id }) }}">mostra</a>
+                                               sostituito con mio modal form personalizzato (tasto chiudi)
+                                            <a href="#" onclick="loadFormIntoModal(Routing.generate('persone_show',{id:{{ persona.id }}}));">Mostra</a> #}
+                                            <a href="#" onclick="loadFormModalClose(Routing.generate('persone_show',{id:{{ persona.id }}}));">Mostra</a>
+                                        </li>
+                                        <li>
+                                            {# sostituito durante la lezione delle modal form (7/3/2017)
+                                                <a href="{{ path('persone_edit', { 'id': persona.id }) }}">Modifica</a>#}
+                                            <a href="#" onclick="loadFormIntoModal(Routing.generate('persone_edit',{id:{{ persona.id }}}));">Modifica</a>
+                                        </li>
+                                        <li>
+                                            {# esercizio (27/3/2017) #}
+                                            <a href="#" onclick="loadConfirmModal(Routing.generate('persone_delete',{id:{{ persona.id }}}));">Elimina</a>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </td></tr></table>
+            </div>
+        </div>
+    </div>
+</div>

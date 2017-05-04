@@ -1,0 +1,57 @@
+{{ form_start(form) }}
+<div class="row">
+    <div class="col-xs-4 col-md-4">
+        {{ form_row(form.nome) }}
+    </div>
+    <div class="col-xs-4 col-md-4">
+        {{ form_row(form.descrizione) }}
+    </div>
+</div>
+<div class="row">
+
+    <table id="myTable" class="table table-bordered table-striped"
+           data-prototype="{%  include 'AppBundle:squadre/prototype:elencoPiloti.html.twig' %}"
+    >
+        {#{{ form_row(form.elencoPersone) }}#}
+        <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Cognome</th>
+            <th>Data Nascita</th>
+            <th>CF</th>
+            {#<th>Gruppo</th>#}
+            {#<th>Squadra</th>#}
+            <th>email</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for p in form.elencoPersone %}
+            <tr>
+                <td>{{ form_widget(p.nome) }}</td>
+                <td>{{ form_widget(p.cognome) }}</td>
+                <td>{{ form_widget(p.dataNascita) }}</td>
+                <td>{#{% form_theme form 'TetranzSelect2EntityBundle:Form:fields.html.twig' %}#}
+                    {{ form_widget(p.codiceFiscale ) }}
+                    {#</td>#}
+                    {#<td>#}
+
+                    {{ form_widget(p.idGruppo, {'attr':{'class': 'hidden'}}) }}
+                    {#</td>#}
+                    {#<td>#}
+                    {{ form_widget(p.idSquadra,{'attr':{'class': 'hidden'}}) }}
+                </td>
+                <td>{{ form_widget(p.email) }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="col-md-1">
+        <button class="btn btn-default add " onclick="addPrototype('#myTable');" type="button" aria-label="Nuovo pilota">
+            <span class="glyphicon glyphicon-plus"></span>
+        </button>
+    </div>
+</div>
+{{ form_row(form._token) }}
+<script src="{{ asset('bundles/tetranzselect2entity/js/select2entity.js') }}"></script>
+
+

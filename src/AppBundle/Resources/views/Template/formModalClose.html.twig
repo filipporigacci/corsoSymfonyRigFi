@@ -1,0 +1,20 @@
+{# praticamente copiato dal sito https://v4-alpha.getbootstrap.com/components/modal/#}
+<div id="formModalClose" class="modal fade" role="dialog" data-backdrop="static">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Anagrafica</h4>
+            </div>
+            <div class="modal-body">
+                <div class="well">
+                        <div id="formModalContent"></div>
+                    {# il button seguente è quello di Licari, io l'ho sostituito con un <Chiudi> che non permette di cancellare il record quando chiamato da <Mostra> di index.html.twig #}
+                    <button id="modalSubmit" type="button" class="btn btn-primary pull-right" data-dismiss="modal">Chiudi</button>
+                </div>
+            </div>
+            <div>
+            </div>
+        </div>
+    </div>
+</div>

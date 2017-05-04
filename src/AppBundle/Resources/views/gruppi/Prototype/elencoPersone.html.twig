@@ -1,0 +1,32 @@
+{% filter escape %}
+<tr>
+    {#<td><input type="text" id="appbundle_gruppi_elencoPersone___name___id" name="appbundle_gruppi[elencoPersone][__name__][id]"#}
+               {#required="required" maxlength="255" class="form-control" value=""></td>#}
+
+    {#<td><input type="text" id="appbundle_gruppi_elencoPersone___name___nome" name="appbundle_gruppi[elencoPersone][__name__][nome]"#}
+               {#required="required" maxlength="255" class="form-control" value=""></td>#}
+    {#<td><input type="text" id="appbundle_gruppi_elencoPersone___name___cognome"#}
+               {#name="appbundle_gruppi[elencoPersone][__name__][cognome]" required="required" maxlength="255"#}
+               {#class="form-control" value=""></td>#}
+    {#<td><input type="text" id="appbundle_gruppi_elencoPersone___name___dataNascita"#}
+               {#name="appbundle_gruppi[elencoPersone][__name__][dataNascita]"#}
+               {#required="required" maxlength="255" class="date form-control" value=""></td>#}
+    <td><input type="text" id="appbundle_gruppi_elencoPersone___name___codiceFiscale"
+               name="appbundle_gruppi[elencoPersone][__name__][codiceFiscale]"
+               required="required" maxlength="16"  class="form-control" value=""></td>
+    {#<td>#}
+        {#<input type="text" id="appbundle_gruppi_elencoPersone___name___idSquadra"#}
+        {#name="appbundle_gruppi[elencoPersone][__name__][idSquadra]"  placeholder="inserire ID Squadra (da risolvere)"#}
+        {#required="required" maxlength="16" class="form-control"value="">#}
+
+        {#</td>#}
+        {#<input type="hidden" id="appbundle_gruppi_elencoPersone___name___idGruppo"#}
+               {#name="appbundle_gruppi[elencoPersone][__name__][idGruppo]"#}
+               {#required="required" maxlength="16"  class="form-control" value="{{gruppo.id}}">#}
+
+    {#</td>#}
+    {#<td><input type="text" id="appbundle_gruppi_elencoPersone___name___email"#}
+               {#name="appbundle_gruppi[elencoPersone][__name__][email]"#}
+               {#required="required" class="form-control" value=""></td>#}
+</tr>
+{% endfilter %}

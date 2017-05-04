@@ -1,0 +1,55 @@
+{#{{ include(':gruppi:new.html.twig') }}#}
+
+<h3>Modify the Group</h3>
+{{ form_start(form) }}
+    {{ form_row(form.descrizione) }}
+{#<h4>List</h4>#}
+{#{{ form.descrizione}}#}
+<button class="btn btn-default add " onclick="addTagForm('div.tags','#myTable','{{ gruppo.descrizione}}');" type="button" aria-label="Nuova persona">
+{#<button class="btn btn-default add " onclick="prova();" type="button" aria-label="Nuova persona">#}
+    <span class="glyphicon glyphicon-plus"></span>
+</button>
+<div class="tags"
+    data-prototype="{{ form_widget(form.elencoPersone.vars.prototype)|e('html_attr') }}"
+>
+</div>
+
+<h4>Details</h4>
+    {#{{ form_row(form.elencoPersone) }}#}
+    <table id="myTable" class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Cognome</th>
+            <th>Data Nascita</th>
+            <th>CF</th>
+            <th>email</th>
+            <th>Gruppo</th>
+            <th>Squadra</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for p in form.elencoPersone %}
+            <tr>
+                <td>{{ form_widget(p.nome) }}</td>
+                <td>{{ form_widget(p.cognome) }}</td>
+                <td>{{ form_widget(p.dataNascita) }}</td>
+                <td>{#{% form_theme form 'TetranzSelect2EntityBundle:Form:fields.html.twig' %}#}
+                    {{ form_widget(p.codiceFiscale ) }}
+                    </td>
+                <td>{{ form_widget(p.email) }}</td>
+                <td>
+                    {#{{ form_widget(p.idGruppo, {'attr':{'class': 'hidden'}}) }}#}
+                    {{ form_widget(p.idGruppo) }}
+                </td>
+                <td>
+                    {#{{ form_widget(p.idSquadra,{'attr':{'class': 'hidden'}}) }}#}
+                    {{ form_widget(p.idSquadra) }}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{{ form_errors(form) }}
+{{ form_end(form) }}
+{{ form_row(form._token) }}

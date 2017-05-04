@@ -1,0 +1,20 @@
+{#
+{% extends 'AppBundle::base.html.twig'%}
+{% block body %}
+    <h1>Nuova anagrafica</h1>
+#}
+{# Anche in edit.html.twig eseguiamo le stesse modifiche effettuate in new.html.twig #}
+{#
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+            <input type="submit" value="Crea" />
+    {{ form_end(form) }}
+    <ul>
+        <li>
+            <a href="{{ path('persone_index') }}">Lista</a>
+        </li>
+    </ul>
+{% endblock %}
+#}
+{# E se il contenuto di edit.html.twig e di new.html.twig dev'essere lo stesso allora tanto vale includere uno nell'altro #}
+ {% include '@App/persone/new.html.twig' %}

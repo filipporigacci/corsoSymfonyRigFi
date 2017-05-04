@@ -1,0 +1,29 @@
+{# praticamente copiato dal sito https://v4-alpha.getbootstrap.com/components/modal/#}
+<div id="formModal" class="modal fade" role="dialog" data-backdrop="static">
+    <div class="modal-dialog modal-xl">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Anagrafica</h4>
+            </div>
+            <div class="modal-body">
+{#                <p>Modal body text goes here.</p>
+                <p>.\src\AppBundle\Resources\views\Template\formModal.html.twig</p>#}
+                <div class="well">
+                    <div id="formModalContent"></div>
+                    <button id="modalSubmit" type="button" class="btn btn-primary pull-right" onclick="handleClick(this,event);" data-loading-text="Salvataggio...">Salva</button>
+                    {# quello che segue l'ho copiato dalla form di bootstrap sul loro sito
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>#}
+                </div>
+            </div>
+            <div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+

@@ -1,0 +1,40 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/service_container.html
+parameters:
+#    parameter_name: value
+
+services:
+#    service_name:
+#        class: AppBundle\Directory\ClassName
+#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+
+    log_example_test:
+                class: AppBundle\Services\LogExample
+                arguments:
+                          logger: "@logger"
+                tags:
+                      - { name: monolog.logger, channel: example }
+
+    servizio_ricerca:
+                class: AppBundle\Services\ServizioCerca
+                arguments:
+                      em: "@doctrine.orm.entity_manager"
+                      session: "@session"
+                      log: "@log_example_test"
+
+    app.twig_extension:
+                class: AppBundle\Twig\AppExtension
+                public: false
+                arguments:
+                          em:       '@doctrine.orm.entity_manager'
+                          request:  '@request_stack'
+                tags:
+                          - { name: twig.extension }
+    app.twig_extension_new:
+                class: AppBundle\Twig\AppExtensionNew
+                public: false
+                arguments:
+                          em:       '@doctrine.orm.entity_manager'
+                          request:  '@request_stack'
+                tags:
+                          - { name: twig.extension }

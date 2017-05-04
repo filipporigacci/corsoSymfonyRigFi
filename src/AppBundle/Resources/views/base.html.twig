@@ -1,0 +1,77 @@
+{#{% set route = path(app.request.attributes.get('_route')) %}#}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}
+            {# inizio aggiunta durante la quinta lezione del 7/3/2017
+               caricamento assets installati con <php bin/console assets:install --symlink> #}
+                <link href="{{ asset('bundles/app/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
+                <link href="{{ asset('bundles/app/css/select2.min.css') }}"   rel="stylesheet" type="text/css">
+                <link href="{{ asset('bundles/app/css/bootstrap-datepicker.min.css') }}" rel="stylesheet" type="text/css">
+                <link href="{{ asset('bundles/app/css/pleiade.css') }}"       rel="stylesheet" type="text/css">
+            {# fine aggiunta durante la quinta lezione del 7/3/2017#}
+        {% endblock %}
+        {#
+          <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        #}
+    </head>
+    <body>
+    <div id="menubar">
+        <ul class="nav nav-tabs">
+            {#<li role="presentation" class="active"><a href="{{ path('persone_index') }}">Anagrafica</a></li>#}
+            <li role="presentation" class="active"><a href="#" onclick="javascript:loadShowIntoPanelByUrl(Routing.generate('persone_index')); return false;">Anagrafiche</a></li>
+            {#<li role="presentation"><a href="{{ path('group_index') }}">Gruppi</a></li>#}
+            <li role="presentation"><a href="javascript:void(0);" onclick="javascript:loadShowIntoPanelByUrl(Routing.generate('group_index')); return false;">Gruppi</a></li>
+            {#<li role="presentation" id="Squadre"><a href="{{ path('squadre_index') }}">Squadre</a></li>#}
+            <li role="presentation"><a href="#" onclick="javascript:loadShowIntoPanelByUrl(Routing.generate('squadre_index')); return false;">Squadre</a></li>
+        </ul>
+    </div>
+
+        {# {% block body %} #}
+            {# tag <div> inserito il 2017/3/14 lez n. 6 #}
+            <div class="panel-body"> 
+            </div>
+
+            {% include '@App/Template/formModal.html.twig' %}
+            {% include '@App/Template/confirmModal.html.twig' %}
+            {% include '@App/Template/formModalClose.html.twig' %}
+            
+        {# {% endblock %} #}
+
+
+        {% block javascripts %}
+            {# inizio aggiunta durante la quinta lezione del 7/3/2017
+               caricamento javascript
+               a fondo pagina per non rallentare il caricamento del body #}
+            <script src="{{ asset('bundles/app/js/jquery.min.js') }}"></script>
+            <script src="{{ asset('bundles/app/js/jquery-ui.min.js') }}"></script>
+            <script src="{{ asset('bundles/app/js/jquery.chained.min.js') }}"></script>
+            <script src="{{ asset('bundles/app/js/bootstrap-notify.min.js') }}"></script>
+            <script src="{{ asset('bundles/app/js/tether.min.js') }}"></script>
+            <script src="{{ asset('bundles/app/js/bootstrap.min.js') }}"></script>
+            <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+            <script src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>
+            <script src="{{ asset('bundles/app/js/plugin/notify/bootstrap-notify.min.js') }}"></script>
+            <script src="{{ asset('bundles/app/js/plugin/select2/select2.min.js') }}"></script>
+            <script src="{{ asset('bundles/app/js/plugin/select2/it.js') }}"></script>
+            <script src="{{ asset('bundles/app/js/plugin/bootstrap-datepicker-1.6.1-dist/js/bootstrap-datepicker.min.js') }}"></script>
+            <script src="{{ asset('bundles/app/js/plugin/bootstrap-datepicker-1.6.1-dist/locales/bootstrap-datepicker.it.min.js') }}"></script>
+            <script src="{{ asset('bundles/app/js/functions.js') }}"></script>
+            {# fine aggiunta durante la quinta lezione del 7/3/2017 #}
+
+            {# inizio aggiunta durante la lezione n. 6 del 14/3/2017 #}
+            <script>
+                $(document).ready(
+                    function(){
+                        init('{{ app.request.get('_route') }}');
+                    }
+                )
+            </script>
+            {# fine aggiunta durante la lezione n. 6 del 14/3/2017 #}
+            
+        {% endblock %}
+    </body>
+</html>

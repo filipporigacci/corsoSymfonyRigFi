@@ -1,0 +1,29 @@
+{#<div class="row">#}
+    {#<div class="col-sm-12">#}
+        {#<div class="row">#}
+            {#<div class="col-sm-12">#}
+                <table width="80%" align="center"><tr><td>
+                    <table width="80%" class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            {% for campo in fields %}
+                                <th align="left">{{ campo}}</th>
+                            {% endfor %}
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {# {{ dump() }} #}
+                        {% for persona in persons %}
+                            <tr>
+                                {% for campo in fields %}
+                                    <td> {{ attribute(persona,campo) }} </td>
+                                {% endfor %}
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </td></tr></table>
+            {#</div>#}
+        {#</div>#}
+    {#</div>#}
+{#</div>#}
