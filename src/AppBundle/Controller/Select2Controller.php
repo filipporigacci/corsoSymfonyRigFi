@@ -62,7 +62,7 @@ class Select2Controller extends Controller
      */
     public function personeAction(Request $request)
     {
-        $termine = strtolower($request->query->get('q'));
+        $termine = strtolower($request->query->get('q'));   //Lorefice dice che 'q' è parola chiave
         $data = [];
         /* eliminata perché   inutile se non dannosa (quando inserisco per esempio un valore di 'minimum_input_length' nel controller superiore a 2)
                 if (strlen($termine) < 2) {
@@ -73,8 +73,9 @@ class Select2Controller extends Controller
         $qb = $em->createQueryBuilder();
         $query = $qb->select('p')
             ->from('AppBundle:Persone', 'p')
-            ->where('UPPER(p.cognome) LIKE UPPER(:cognome)')
-            ->setParameter('cognome', '%' . $termine . '%')
+            ->where('UPPER(p.codiceFiscale) LIKE UPPER(:CF)')
+            ->andWhere('p.idGruppo is null')
+            ->setParameter('CF', '%' . $termine . '%')
             ->getQuery();
         $persone = $query->getResult();
         /**
@@ -82,8 +83,8 @@ class Select2Controller extends Controller
          * @var  $persona Persone
          */
         foreach ($persone as $key => $persona) {
-            if (strpos(strtolower($persona->getCognome()), $termine) >= 0) {
-                $data[] = ['id' => $persona->getId(), 'text' => $persona->getPersone()];
+            if (strpos(strtolower($persona->getCodiceFiscale()), $termine) >= 0) {
+                $data[] = ['id' => $persona->getId(), 'text' => $persona->getCodiceFiscale()];
             }
         }
         return JsonResponse::create($data);
@@ -118,4 +119,6 @@ class Select2Controller extends Controller
         }
         return JsonResponse::create($data);
     }
+
+
 }

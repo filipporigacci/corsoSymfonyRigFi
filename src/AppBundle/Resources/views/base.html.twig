@@ -19,6 +19,7 @@
         #}
     </head>
     <body>
+    <table width="90%" align="center"><tr><td>
     <div id="menubar">
         <ul class="nav nav-tabs">
             {#<li role="presentation" class="active"><a href="{{ path('persone_index') }}">Anagrafica</a></li>#}
@@ -32,9 +33,10 @@
 
         {# {% block body %} #}
             {# tag <div> inserito il 2017/3/14 lez n. 6 #}
-            <div class="panel-body"> 
-            </div>
+    <div class="panel-body">
+    </div>
 
+            </td></tr></table>
             {% include '@App/Template/formModal.html.twig' %}
             {% include '@App/Template/confirmModal.html.twig' %}
             {% include '@App/Template/formModalClose.html.twig' %}

@@ -79,6 +79,14 @@ class Gruppi
     }
 
     /**
+     * @param ArrayCollection $elencoPersone
+     */
+    public function setElencoPersone($elencoPersone)
+    {
+        $this->elencoPersone = $elencoPersone;
+    }
+
+    /**
      * @return ArrayCollection
      */
     public function getElencoPersone()

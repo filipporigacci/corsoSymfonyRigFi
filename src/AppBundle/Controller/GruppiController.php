@@ -97,7 +97,7 @@ class GruppiController extends Controller
                 );
             }
         }
-        return $this->render('AppBundle:gruppi:edit.html.twig', array(
+        return $this->render("@App/gruppi/edit.html.twig", array(
             'gruppo' => $gruppo,
             'form' => $form->createView(),
         ));
@@ -141,6 +141,48 @@ class GruppiController extends Controller
 
         return $this->render('AppBundle:gruppi:new.html.twig', array(
             '$groups' => $groups,
+            'form' => $form->createView(),
+        ));
+    }
+
+    /**
+     * Displays a form to edit an existing group entity.
+     * @Route("/{id}/add_person", name="gruppi_add_persona",options={"expose"=true})
+     * @Method({"GET", "POST"})
+     * @param Request $request
+     * @param Gruppi $gruppo
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     */
+    public function addpersonAction(Request $request, Gruppi $gruppo)
+    {
+        $form = $this->createForm('AppBundle\Form\GruppiAddPeopleType', $gruppo, array(
+            'action' => $this->generateUrl('gruppi_add_persona', array('id' => $gruppo->getId()))));
+        $form->handleRequest($request);
+        if ($form->isSubmitted()) {
+            if ($form->isValid()) {
+                $persone=$gruppo->getElencoPersone();
+                $em = $this->getDoctrine()->getManager();
+                $em->flush($gruppo);
+                foreach ($persone as $persona){
+                    $persona->setIdGruppo($gruppo);
+                    $em->flush($persona);
+                }
+                return $this->redirect($this->generateUrl('group_index'));
+            } else {
+                return new Response(
+
+                    $this->renderView('AppBundle:gruppi:edit_add_persone.twig',
+                        array(
+                            'gruppo' => $gruppo,
+                            'form' => $form->createView()
+                        )
+                    )
+                    , 409
+                );
+            }
+        }
+        return $this->render("@App/gruppi/edit_add_persone.html.twig", array(
+            'gruppo' => $gruppo,
             'form' => $form->createView(),
         ));
     }

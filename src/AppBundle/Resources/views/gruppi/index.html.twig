@@ -1,26 +1,28 @@
 <h1>Gruppi</h1>
-<div class="row">
-    <div class="col-sm-12">
-        <div class="row">
-            <div class="col-sm-12">
-                <table class="table table-bordered table-striped">
-                    <thead>
-                    <tr>
-                        <th>Nome</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {#{{ dump() }}#}
-                    {% for group in groups %}
-                        <tr>
-                            <td>
-                                <a href="#"
-                                onclick="loadFormIntoModal(Routing.generate('gruppi_edit',{id:{{ group.id }}}));"
-                                >{{ group.descrizione }} </a>
-                                <br># {{  group.elencoPersone | length}}
-                            </td>
-                        </tr>
-                    {% endfor %}
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th class="col-xs-7">Nome</th>
+            <th class="col-xs-3">Azione</th>
+        </tr>
+    </thead>
+    <tbody>
+{#{{ dump() }}#}
+    {% for group in groups %}
+        <tr>
+            <td>
+                <a href="#" onclick="loadFormIntoModal(Routing.generate('gruppi_edit',{id:{{ group.id }}}));">{{ group.descrizione }} </a>
+                <br>n. persone: {{  group.elencoPersone | length}}
+            </td>
+            <td>
+                {#<ul>#}
+                    {#<li>#}
+                        <a href="#" onclick="loadFormIntoModal(Routing.generate('gruppi_add_persona',{id:{{ group.id }}}));">Aggiungi persone al gruppo</a>
+                    {#</li>#}
+                {#</ul>#}
+            </td>
+        </tr>
+    {% endfor %}
                     {#{% for persona in groups.elencoPersone %}#}
                         {#<tr>#}
                             {#<td>{{ groups.descrizione }}</td>#}
@@ -60,16 +62,12 @@
                             {#</td>#}
                         {#</tr>#}
                     {#{% endfor %}#}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
+    </tbody>
+</table>
+
+
 <ul>
     <li>
-        <a href="#" onclick="loadFormIntoModal(Routing.generate('group_new'));">New</a>
+        <a href="#" onclick="loadFormIntoModal(Routing.generate('group_new'));">Nuovo gruppo</a>
     </li>
 </ul>
-
-

@@ -87,7 +87,7 @@ class PersoneController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $people = $em->getRepository('AppBundle:Persone')->findAll();
-        $fields= array('nome','cognome');
+        $fields= array('nome','cognome');                       //a titolo esemplificativo l'array è definito nel controller
         return $this->render('AppBundle:persone:tabellaTwigExtension.html.twig',
             array(
                 'persone' => $people,

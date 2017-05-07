@@ -1,0 +1,14 @@
+{{ form_start(form) }}
+<div class="row">
+    <div class="col-xs-4 col-md-4">
+        {{ form_row(form.descrizione) }}
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-4 col-md-4">
+        {% form_theme form 'TetranzSelect2EntityBundle:Form:fields.html.twig' %}
+        {{ form_row(form.elencoPersone) }}
+    </div>
+</div>
+{{ form_row(form._token) }}
+<script src="{{ asset('bundles/tetranzselect2entity/js/select2entity.js') }}"></script>
