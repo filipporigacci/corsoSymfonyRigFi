@@ -47,19 +47,19 @@ class PersoneType extends AbstractType
             ->add('email',
                 TextType::class, array(
                 'label' =>'email',
-                'constraints' => array(
-                    new Regex(
-                        array(
-                            'message' => "l'indirizzo '{{ value }}' non è un indirizzo email valido.",
-                            'pattern' => '/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/'
-                        )),
-                    new NotNull(array('message' => 'campo obbligatorio'))
-                    )
-//                    'constraints' => new Regex(
+//                'constraints' => array(
+//                    new Regex(
 //                        array(
 //                            'message' => "l'indirizzo '{{ value }}' non è un indirizzo email valido.",
 //                            'pattern' => '/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/'
-//                        ))
+//                        )),
+//                    new NotNull(array('message' => 'campo obbligatorio'))
+//                    )
+                    'constraints' => new Regex(
+                        array(
+                            'message' => "l'indirizzo '{{ value }}' non è un indirizzo email valido.",
+                            'pattern' => '/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/'
+                        ))
                 ))
 //            Inserito e sostituito nell'arco della lez n. 7 del 21/3/2107
 //            ->add('idGruppo', EntityType::class, array(
