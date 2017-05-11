@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
 /**
  * Persone controller.
@@ -95,6 +96,52 @@ class PersoneController extends Controller
             )
         );
     }
+
+
+    /**
+     *
+     * @Route("/paginazioneDoctrine/{pageNumber}")
+     * @Method("GET")
+     */
+    public function paginazioneDoctrineAction($pageNumber)
+    {
+//        http://docs.doctrine-project.org/projects/doctrine-orm/en/latest/tutorials/pagination.html
+
+//        $em = $this->getDoctrine()->getManager();
+//        $qb = $em->createQueryBuilder();
+//        $query = $qb->select('p')
+
+        $pageSize=5;
+
+        $em = $this->getDoctrine()->getManager();
+        $dql = "SELECT p FROM AppBundle:Persone p";
+        $query = $em->createQuery($dql)
+                    ->setFirstResult($pageSize * ($pageNumber - 1))                // set the offset
+                    ->setMaxResults($pageSize);           // set the limit
+
+        /** @var TYPE_NAME $fetchJoinCollection */
+        $paginator = new Paginator($query, $fetchJoinCollection = true);
+
+        //$totalItems = count($paginator);
+        // ma ancor meglio
+        //$totalItems = $paginator->count();
+        //non serve
+        //$pagesCount = ceil($paginator->count()/$pageSize);
+
+
+//        foreach ($paginator as $persona) {
+//            echo $persona->getCodiceFiscale() . "\n";
+//        }
+
+        $fields= array('nome','cognome','codiceFiscale');                       //a titolo esemplificativo l'array è definito nel controller
+        return $this->render('AppBundle:persone:tabellaTwigExtension.html.twig',
+            array(
+                'persone' => $paginator,
+                'campi'   => $fields
+            )
+        );
+    }
+
 
     /**
      * Creates a new persone entity.
