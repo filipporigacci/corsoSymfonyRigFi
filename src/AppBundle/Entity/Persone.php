@@ -67,7 +67,7 @@ class Persone
     /**
      * @var string
      *
-     * @ORM\Column(name="codiceFiscale", type="string", length=16, unique=true)
+     * @ORM\Column(name="codiceFiscale", type="string", length=26, unique=true)
      */
     private $codiceFiscale;
 
